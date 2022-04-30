@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Home from "./pages/Home";
+import Archive from "./pages/Archive";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HeaderComponent from "./components/styled/HeaderComponent";
+import Month from "./pages/Month";
+
+const Container = styled.div`
+  width: 60vw;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  background-color: rgb(250, 235, 230);
+  border-radius: 1rem;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container>
+        <HeaderComponent />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/archive" element={<Archive />} />
+          <Route path="/month" element={<Month />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 
