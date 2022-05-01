@@ -36,7 +36,7 @@ const Item = styled.div`
   transition: background-color 1s;
 `;
 
-const TodoItem = ({ desc, title, id }) => {
+const TodoItem = ({ desc, title, id, itemDeleted }) => {
   const [status, setStatus] = useState(false);
   const dispatch = useDispatch();
 
@@ -45,6 +45,7 @@ const TodoItem = ({ desc, title, id }) => {
   };
   const deleteItem = (id) => {
     dispatch(removeItem(id));
+    itemDeleted();
   };
   const archiveItem = () => {
     console.log("item archived: ", id);

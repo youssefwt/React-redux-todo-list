@@ -24,6 +24,7 @@ const DateStyled = styled.div`
 const HeaderComponent = () => {
   const m = new Date().getMonth();
   const d = new Date().getDate();
+  const y = new Date().getFullYear();
   const dayIndex = new Date().getDay();
   const getDayName = (dayIndex) => {
     const days = [
@@ -41,7 +42,7 @@ const HeaderComponent = () => {
 
   return (
     <Container>
-      <DateStyled>{`${dayName} ${m}-${d}`}</DateStyled>
+      <DateStyled>{`${dayName} ${m + 1}-${d}-${y}`}</DateStyled>
       <LinkContainer>
         <Link to="/">
           <RouterLink>Home</RouterLink>

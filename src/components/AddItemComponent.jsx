@@ -19,7 +19,11 @@ const AddItem = () => {
 
   const addItem = (title, desc) => {
     if (title && desc) {
-      const item = { title, desc };
+      const m = new Date().getMonth();
+      const d = new Date().getDate();
+      const y = new Date().getFullYear();
+      const addingDate = `${m + 1}-${d}-${y}`;
+      const item = { title, desc, addingDate };
       // dispatch(newItem(item));
       dispatch(addNewItem(item));
       setDesc("");

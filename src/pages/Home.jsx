@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -13,9 +13,15 @@ const Container = styled.div`
 const Home = () => {
   const dispatch = useDispatch();
 
+  const [updater, setUpdater] = useState(true);
+
+  const itemDeleted = () => {
+    setUpdater(!updater);
+  };
+
   useEffect(() => {
     dispatch(fetchItems());
-  }, []);
+  }, [updater]);
 
   const { todos } = useSelector((state) => state.todo);
 
@@ -27,7 +33,9 @@ const Home = () => {
         <hr />
         <br />
         {todos &&
-          todos.map((item, index) => <TodoItem key={index} {...item} />)}
+          todos.map((item, index) => (
+            <TodoItem itemDeleted={itemDeleted} key={index} {...item} />
+          ))}
       </Container>
     </>
   );

@@ -1,6 +1,7 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { fetchArchive } from "../redux/archiveSlice";
 
 const Container = styled.div`
   padding: 1rem;
@@ -24,13 +25,43 @@ const Month = styled.button`
 `;
 
 const Archive = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchArchive());
+  }, []);
+
+  const { archiveData } = useSelector((state) => state.archive);
+  // archiveData && console.log(archiveData[0].month);
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let monthNumber = [];
+  archiveData &&
+    archiveData.forEach((obj) => {
+      monthNumber.push(obj.month * 1);
+    });
+  let monthNames = [];
+  monthNumber.forEach((month) => {
+    monthNames.push(months[month - 1]);
+  });
+
   return (
     <>
       <Container>
-        <Month>October</Month>
-        <Month>November</Month>
-        <Month>December</Month>
-        <Month>january</Month>
+        {monthNames &&
+          monthNames.map((month, index) => <Month key={index}>{month}</Month>)}
       </Container>
     </>
   );
