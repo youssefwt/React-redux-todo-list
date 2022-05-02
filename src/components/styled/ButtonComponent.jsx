@@ -25,8 +25,6 @@ const ButtonStyled = styled.button`
 `;
 
 const ButtonComponent = (props) => {
-  props.status && console.log("satus: ", props.status);
-
   return (
     <ButtonStyled {...props} onClick={props.handleClick}>
       {props.children}

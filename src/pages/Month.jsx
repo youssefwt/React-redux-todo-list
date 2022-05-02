@@ -42,7 +42,7 @@ const Month = () => {
     <Container>
       {todos &&
         archivedItems.map((item, index) => (
-          <TodoItem key={index} {...item}></TodoItem>
+          <TodoItem key={item.id} {...item}></TodoItem>
         ))}
     </Container>
   );

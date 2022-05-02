@@ -22,8 +22,8 @@ const Title = styled.div`
   width: 15%;
   text-align: center;
   background-color: #fffefb;
-  background-color: ${({ status }) => (status ? "lightgray" : "#fffefb")};
-  text-decoration: ${({ status }) => (status ? "line-through" : "none")};
+  background-color: ${({ checked }) => (checked ? "lightgray" : "#fffefb")};
+  text-decoration: ${({ checked }) => (checked ? "line-through" : "none")};
   transition: background-color 1s;
 `;
 
@@ -33,11 +33,11 @@ const Item = styled.div`
   padding: 0.5rem;
   width: 65%;
   text-align: center;
-  background-color: ${({ status }) => (status ? "lightgray" : "#fffefb")};
-  text-decoration: ${({ status }) => (status ? "line-through" : "none")};
+  background-color: ${({ checked }) => (checked ? "lightgray" : "#fffefb")};
+  text-decoration: ${({ checked }) => (checked ? "line-through" : "none")};
 `;
 
-const Itemdate = styled.div`
+const ItemDate = styled.div`
   background-color: #fffefb;
   border: 1px solid gray;
   border-radius: 0.5rem;
@@ -55,13 +55,15 @@ const TodoItem = ({
   itemDeleted,
   archived,
   addingDate,
+  isChecked,
 }) => {
-  const [status, setStatus] = useState(false);
-
+  const [checked, setChecked] = useState(isChecked === "true");
   const dispatch = useDispatch();
 
   const handleCheck = () => {
-    setStatus(!status);
+    setChecked(!checked);
+    let data = { isChecked: `${!checked}` };
+    dispatch(updateItem({ id, data }));
   };
   const deleteItem = (id) => {
     dispatch(removeItem(id));
@@ -69,16 +71,16 @@ const TodoItem = ({
   };
   const archiveItem = () => {
     // console.log("item archived: ", id);
+    itemArchived();
     let data = { archived: "true" };
     dispatch(updateItem({ id, data }));
-    itemArchived();
   };
 
   return (
     <Container>
-      <CheckBox archived={archived} onClick={handleCheck} />
-      <Title status={status}>{title}</Title>
-      <Item status={status}>{desc}</Item>
+      <CheckBox checked={checked} archived={archived} onClick={handleCheck} />
+      <Title checked={checked}>{title}</Title>
+      <Item checked={checked}>{desc}</Item>
       <ButtonComponent
         handleClick={() => deleteItem(id)}
         color="darkred"
@@ -89,14 +91,14 @@ const TodoItem = ({
       </ButtonComponent>
       <ButtonComponent
         handleClick={archiveItem}
-        disabled={!status}
+        disabled={!checked}
         color="white"
         bg="orange"
         archived={archived}
       >
         Arc
       </ButtonComponent>
-      <Itemdate archived={archived}>{addingDate}</Itemdate>
+      <ItemDate archived={archived}>{addingDate}</ItemDate>
     </Container>
   );
 };

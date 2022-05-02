@@ -32,7 +32,6 @@ const AddItem = () => {
     }
   };
 
-  console.log(title, desc);
   return (
     <>
       <Container>
