@@ -22,8 +22,10 @@ const Title = styled.div`
   width: 15%;
   text-align: center;
   background-color: #fffefb;
-  background-color: ${({ checked }) => (checked ? "lightgray" : "#fffefb")};
-  text-decoration: ${({ checked }) => (checked ? "line-through" : "none")};
+  background-color: ${({ checked, home }) =>
+    checked && home ? "lightgray" : "#fffefb"};
+  text-decoration: ${({ checked, home }) =>
+    checked && home ? "line-through" : "none"};
   transition: background-color 1s;
 `;
 
@@ -33,8 +35,10 @@ const Item = styled.div`
   padding: 0.5rem;
   width: 65%;
   text-align: center;
-  background-color: ${({ checked }) => (checked ? "lightgray" : "#fffefb")};
-  text-decoration: ${({ checked }) => (checked ? "line-through" : "none")};
+  background-color: ${({ checked, home }) =>
+    checked && home ? "lightgray" : "#fffefb"};
+  text-decoration: ${({ checked, home }) =>
+    checked && home ? "line-through" : "none"};
 `;
 
 const ItemDate = styled.div`
@@ -56,6 +60,7 @@ const TodoItem = ({
   archived,
   addingDate,
   isChecked,
+  location,
 }) => {
   const [checked, setChecked] = useState(isChecked === "true");
   const dispatch = useDispatch();
@@ -78,9 +83,13 @@ const TodoItem = ({
 
   return (
     <Container>
-      <CheckBox checked={checked} archived={archived} onClick={handleCheck} />
-      <Title checked={checked}>{title}</Title>
-      <Item checked={checked}>{desc}</Item>
+      <CheckBox checked={checked} archived={archived} onChange={handleCheck} />
+      <Title checked={checked} home={location === "/" ? true : false}>
+        {title}
+      </Title>
+      <Item checked={checked} home={location === "/" ? true : false}>
+        {desc}
+      </Item>
       <ButtonComponent
         handleClick={() => deleteItem(id)}
         color="darkred"

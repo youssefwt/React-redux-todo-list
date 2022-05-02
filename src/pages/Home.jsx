@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import AddItem from "../components/AddItemComponent";
 import TodoItem from "../components/TodoItem";
@@ -11,6 +12,10 @@ const Container = styled.div`
 `;
 
 const Home = () => {
+  const location = useLocation().pathname;
+
+  console.log(location);
+
   const dispatch = useDispatch();
 
   const [updater, setUpdater] = useState(true);
@@ -42,6 +47,7 @@ const Home = () => {
         {currentItems &&
           currentItems.map((item, index) => (
             <TodoItem
+              location={location}
               updater={updater}
               itemArchived={itemArchived}
               itemDeleted={itemDeleted}

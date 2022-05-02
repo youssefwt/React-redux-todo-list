@@ -11,6 +11,7 @@ const Container = styled.div`
 
 const Month = () => {
   const dispatch = useDispatch();
+
   const params = useParams();
 
   useEffect(() => {
