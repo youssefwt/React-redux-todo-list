@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: coral;
+  background-color: rgb(244, 177, 131);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 `;
@@ -17,6 +17,7 @@ const LinkContainer = styled.div`
 
 const DateStyled = styled.div`
   font-size: 2rem;
+  font-weight: 600;
   padding: 1rem 2rem;
   color: white;
 `;

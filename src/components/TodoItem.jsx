@@ -35,7 +35,6 @@ const Item = styled.div`
   text-align: center;
   background-color: ${({ status }) => (status ? "lightgray" : "#fffefb")};
   text-decoration: ${({ status }) => (status ? "line-through" : "none")};
-  transition: background-color 1s;
 `;
 
 const Itemdate = styled.div`

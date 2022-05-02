@@ -9,12 +9,14 @@ const Alink = styled.button`
   background-color: #faebe6;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-
+  color: coral;
+  font-weight: 600;
   &:hover {
     transform: scale(0.93);
     cursor: pointer;
   }
   &:disabled {
+    color: grey;
     cursor: default;
     transform: scale(1.1);
     &:hover {

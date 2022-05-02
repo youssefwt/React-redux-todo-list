@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: auto;
   margin-top: 2rem;
   border-radius: 1rem;
-  background-color: rgb(250, 235, 230);
+  background-color: rgb(255, 248, 229);
   border-radius: 1rem;
 `;
 

@@ -19,10 +19,10 @@ const AddItem = () => {
 
   const addItem = (title, desc) => {
     if (title && desc) {
-      const m = new Date().getMonth();
+      const m = ("0" + (new Date().getMonth() + 1)).slice(-2);
       const d = new Date().getDate();
       const y = new Date().getFullYear();
-      const addingDate = `${m + 1}-${d}-${y}`;
+      const addingDate = `${m}-${d}-${y}`;
       const archived = "false";
       const item = { title, desc, addingDate, archived };
       // dispatch(newItem(item));

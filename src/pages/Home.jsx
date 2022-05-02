@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AddItem from "../components/AddItemComponent";
 import TodoItem from "../components/TodoItem";
 import { fetchItems } from "../redux/todoSlice";
+import { animated, useTransition } from "react-spring";
 
 const Container = styled.div`
   padding: 1rem;
@@ -27,6 +28,8 @@ const Home = () => {
   }, [updater]);
 
   const { todos } = useSelector((state) => state.todo);
+
+  const transition = useTransition(todos, {});
 
   function isArchived(item) {
     return item.archived === "false";
@@ -51,6 +54,9 @@ const Home = () => {
               {...item}
             />
           ))}
+        {transition((style, item) =>
+          item ? <animated.div className="style" /> : ""
+        )}
       </Container>
     </>
   );
