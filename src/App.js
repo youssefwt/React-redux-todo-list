@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/archive" element={<Archive />} />
-          <Route path="/month" element={<Month />} />
+          <Route path="/month/:id" element={<Month />} />
         </Routes>
       </Container>
     </BrowserRouter>

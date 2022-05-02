@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import RouterLink from "../RouterLink";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -22,6 +22,9 @@ const DateStyled = styled.div`
 `;
 
 const HeaderComponent = () => {
+  const location = useLocation();
+  const path = location.pathname;
+
   const m = new Date().getMonth();
   const d = new Date().getDate();
   const y = new Date().getFullYear();
@@ -45,10 +48,12 @@ const HeaderComponent = () => {
       <DateStyled>{`${dayName} ${m + 1}-${d}-${y}`}</DateStyled>
       <LinkContainer>
         <Link to="/">
-          <RouterLink>Home</RouterLink>
+          <RouterLink disabled={path === "/" ? true : false}>Home</RouterLink>
         </Link>
         <Link to="/archive">
-          <RouterLink>Archive</RouterLink>
+          <RouterLink disabled={path === "/archive" ? true : false}>
+            Archive
+          </RouterLink>
         </Link>
       </LinkContainer>
     </Container>

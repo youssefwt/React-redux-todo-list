@@ -23,7 +23,8 @@ const AddItem = () => {
       const d = new Date().getDate();
       const y = new Date().getFullYear();
       const addingDate = `${m + 1}-${d}-${y}`;
-      const item = { title, desc, addingDate };
+      const archived = "false";
+      const item = { title, desc, addingDate, archived };
       // dispatch(newItem(item));
       dispatch(addNewItem(item));
       setDesc("");

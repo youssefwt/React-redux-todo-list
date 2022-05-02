@@ -18,6 +18,19 @@ export const removeItem = createAsyncThunk("todos/delete", async (id) => {
   return response.data;
 });
 
+export const updateItem = createAsyncThunk(
+  "todos/archive",
+  async ({ id, data }) => {
+    const response = await axios.patch(
+      `http://localhost:3030/items/${id}`,
+      data
+    );
+    console.log(id);
+    console.log(data);
+    return response.data;
+  }
+);
+
 export const todoSlice = createSlice({
   name: "todo",
   initialState: {
@@ -57,13 +70,20 @@ export const todoSlice = createSlice({
       state.loading = true;
     },
     [removeItem.fulfilled]: (state, action) => {
-      // todos.filter(
-      //   (items) => items.id !== id
-      // )
       console.log(action.payload);
       state.loading = false;
     },
     [removeItem.rejected]: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
+    [updateItem.pending]: (state) => {
+      state.loading = true;
+    },
+    [updateItem.fulfilled]: (state, action) => {
+      state.loading = false;
+    },
+    [updateItem.rejected]: (state) => {
       state.loading = false;
       state.error = true;
     },

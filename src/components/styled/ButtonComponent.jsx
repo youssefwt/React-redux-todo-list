@@ -9,9 +9,10 @@ const ButtonStyled = styled.button`
   border-color: ${({ bg }) => bg};
   border-radius: 0.5em;
   background-color: ${({ bg }) => bg};
-  cursor: pointer;
+  display: ${({ archived }) => (archived === "true" ? "none" : "block")};
   &:hover {
     transform: scale(0.93);
+    cursor: pointer;
   }
   &:disabled {
     background-color: lightgray;

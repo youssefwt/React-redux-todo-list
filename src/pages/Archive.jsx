@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { fetchArchive } from "../redux/archiveSlice";
-
+import { fetchItems } from "../redux/todoSlice";
+import { Link } from "react-router-dom";
 const Container = styled.div`
   padding: 1rem;
   display: flex;
@@ -23,17 +23,14 @@ const Month = styled.button`
     transform: scale(0.95);
   }
 `;
-
+/////////////////////////////////////////////////////////////////////////////////
 const Archive = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchArchive());
+    dispatch(fetchItems());
   }, []);
 
-  const { archiveData } = useSelector((state) => state.archive);
-  // archiveData && console.log(archiveData[0].month);
-  let months = [
+  let monthNames = [
     "January",
     "February",
     "March",
@@ -47,21 +44,34 @@ const Archive = () => {
     "November",
     "December",
   ];
-  let monthNumber = [];
-  archiveData &&
-    archiveData.forEach((obj) => {
-      monthNumber.push(obj.month * 1);
-    });
-  let monthNames = [];
-  monthNumber.forEach((month) => {
-    monthNames.push(months[month - 1]);
-  });
+
+  const { todos } = useSelector((state) => state.todo);
+  function isArchived(item) {
+    return item.archived === "true";
+  }
+  const archivedItems = todos && todos.filter(isArchived);
+  let months = [];
+  archivedItems &&
+    archivedItems.forEach((el) =>
+      months.push(`${el.addingDate.substr(0, 2) + el.addingDate.slice(-4)}`)
+    );
+  console.log(months);
+  months = [...new Set(months)];
 
   return (
     <>
       <Container>
-        {monthNames &&
-          monthNames.map((month, index) => <Month key={index}>{month}</Month>)}
+        {archivedItems &&
+          months.map((item, index) => (
+            <Link
+              key={index}
+              to={`/month/${item.substr(0, 2)}${item.slice(-4)}`}
+            >
+              <Month>
+                {`${monthNames[item.substr(0, 2) - 1]}-${item.substr(2)}`}
+              </Month>
+            </Link>
+          ))}
       </Container>
     </>
   );

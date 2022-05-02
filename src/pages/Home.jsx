@@ -18,12 +18,22 @@ const Home = () => {
   const itemDeleted = () => {
     setUpdater(!updater);
   };
+  const itemArchived = () => {
+    setUpdater(!updater);
+  };
 
   useEffect(() => {
     dispatch(fetchItems());
   }, [updater]);
 
   const { todos } = useSelector((state) => state.todo);
+
+  function isArchived(item) {
+    return item.archived === "false";
+  }
+  const currentItems = todos && todos.filter(isArchived);
+
+  currentItems && console.log(currentItems);
 
   return (
     <>
@@ -32,9 +42,14 @@ const Home = () => {
         <br />
         <hr />
         <br />
-        {todos &&
-          todos.map((item, index) => (
-            <TodoItem itemDeleted={itemDeleted} key={index} {...item} />
+        {currentItems &&
+          currentItems.map((item, index) => (
+            <TodoItem
+              itemArchived={itemArchived}
+              itemDeleted={itemDeleted}
+              key={index}
+              {...item}
+            />
           ))}
       </Container>
     </>
