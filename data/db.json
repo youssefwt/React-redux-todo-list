@@ -1,28 +1,44 @@
 {
   "items": [
     {
-      "title": "1",
-      "desc": "1",
-      "addingDate": "05-2-2022",
-      "archived": "false",
-      "id": 1,
-      "isChecked": "false"
-    },
-    {
-      "title": "2",
-      "desc": "22",
-      "addingDate": "05-2-2022",
+      "title": "make todo",
+      "desc": "make a react todo list 📃",
+      "addingDate": "04-30-2022",
       "archived": "true",
-      "id": 2,
+      "id": 1,
       "isChecked": "true"
     },
     {
-      "title": "3",
-      "desc": "333",
+      "title": "hello",
+      "desc": "hello everyone 👋",
       "addingDate": "05-2-2022",
       "archived": "false",
-      "id": 3,
+      "id": 2,
       "isChecked": "false"
+    },
+    {
+      "title": "welcome",
+      "desc": "welcome to this short demo",
+      "addingDate": "05-3-2022",
+      "archived": "true",
+      "id": 3,
+      "isChecked": "true"
+    },
+    {
+      "title": "archive",
+      "desc": "archive this item",
+      "addingDate": "05-3-2022",
+      "archived": "true",
+      "id": 4,
+      "isChecked": "true"
+    },
+    {
+      "title": "check",
+      "desc": "check if item still checked after reloading",
+      "addingDate": "05-3-2022",
+      "archived": "true",
+      "id": 6,
+      "isChecked": "true"
     }
   ]
 }
